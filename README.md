@@ -4,8 +4,8 @@
     This file includes three branches in which the three diffrent calculators are going to exit
 </p>
 
-Branch Name     Calculator
-Appliance       Appliance Calculator
-Solar           Solar Calculator
-Carbon          Carbon Calculator
+Branch Name     Calculator <br>
+Appliance       Appliance Calculator<br>
+Solar           Solar Calculator<br>
+Carbon          Carbon Calculator<br>
 
