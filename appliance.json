@@ -1,0 +1,127 @@
+[
+    {   "name" : "Home",
+        "data" : [
+        {   
+            "name": "Air Conditioner (HVAC)",	
+            "power":"2500-10000"
+        },
+        {   
+            "name": "Air conditioner (window unit)",	
+            "power":"1500-5000"
+        },
+        {   
+            "name": "Heater (home)",	
+            "power":"5000-20000"
+        },
+        {   
+            "name": "Heater (portable)",	
+            "power":"750-2000"
+        },
+        {   
+            "name": "Humidifier",	
+            "power":"25-350"
+        },
+        {   
+            "name": "Dehumidifier",	
+            "power":"200-750"
+        },
+        {   
+            "name": "Fan (ceiling table)",	
+            "power":"15-200"
+        },
+        {   
+            "name": "Light bulb (LED)",	
+            "power":"3-25"
+        },
+        {   
+            "name": "Light bulb (incandescent)",	
+            "power":"15-200"
+        },
+        {   
+            "name": "Electric water heater",	
+            "power":"3000-6600"
+        }
+    ]},
+    {   "name" : "Kitchen",
+        "data" : [
+        {
+            "name" : "Refrigerator" , 
+            "power" :	"500-1000"
+        },
+        {
+            "name" : "Electric range/oven" , 
+            "power" :	"2000-5000"
+        },
+        {
+            "name" : "Electric cooktop/stove" , 
+            "power" :	"750-5000"
+        },
+        {
+            "name" : "Microwave oven" , 
+            "power" :	"750-1500"
+        },
+        {
+            "name" : "Dishwasher" , 
+            "power" :	"1200-2000"
+        },
+        {
+            "name" : "Coffee maker" , 
+            "power" :	"600-1200"
+        },
+        {
+            "name" : "Toaster" , 
+            "power" :	"750-1500"
+        },
+        {
+            "name" : "Electric kettle" , 
+            "power" :	"1000-2000"
+        },
+        {
+            "name" : "Electric cooker" , 
+            "power" :	"160-1500"
+        }
+    ]},
+    {   "name" : "Other",
+        "data" : [
+        {
+            "name":"Electric vehicle charger" , 
+            "power" :	"1,500-20,000"
+        },
+        {
+            "name":"Television" , 
+            "power" :	"25-500"
+        },
+        {
+            "name":"Washing machine" , 
+            "power" :	"400-1500"
+        },
+        {
+            "name":"Clothes dryer" , 
+            "power" :	"1800-5000"
+        },
+        {
+            "name":"Clothes iron" , 
+            "power" :	"750-2000"
+        },
+        {
+            "name":"Hair dryer" , 
+            "power" :	"750-2000"
+        },
+        {
+            "name":"Desktop computer" , 
+            "power" :	"100-250"
+        },
+        {
+            "name":"Laptop computer" , 
+            "power" :	"35-150"
+        },
+        {
+            "name":"Smart phone charger" , 
+            "power" :	"5-25"
+        },
+        {
+            "name":"Water pump/motor" , 
+            "power" :	"750-2000"
+        }
+    ]}
+]

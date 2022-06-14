@@ -1,0 +1,38 @@
+[
+    {
+        "name" : "Refrigerator" , 
+        "power" :	"500-1000"
+    },
+    {
+        "name" : "Electric range/oven" , 
+        "power" :	"2000-5000"
+    },
+    {
+        "name" : "Electric cooktop/stove" , 
+        "power" :	"750-5000"
+    },
+    {
+        "name" : "Microwave oven" , 
+        "power" :	"750-1500"
+    },
+    {
+        "name" : "Dishwasher" , 
+        "power" :	"1200-2000"
+    },
+    {
+        "name" : "Coffee maker" , 
+        "power" :	"600-1200"
+    },
+    {
+        "name" : "Toaster" , 
+        "power" :	"750-1500"
+    },
+    {
+        "name" : "Electric kettle" , 
+        "power" :	"1000-2000"
+    },
+    {
+        "name" : "Electric cooker" , 
+        "power" :	"160-1500"
+    }
+]

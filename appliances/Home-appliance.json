@@ -1,0 +1,42 @@
+[
+    {   
+        "name": "Air Conditioner (HVAC)",	
+        "power":"2500-10000"
+    },
+    {   
+        "name": "Air conditioner (window unit)",	
+        "power":"1500-5000"
+    },
+    {   
+        "name": "Heater (home)",	
+        "power":"5000-20000"
+    },
+    {   
+        "name": "Heater (portable)",	
+        "power":"750-2000"
+    },
+    {   
+        "name": "Humidifier",	
+        "power":"25-350"
+    },
+    {   
+        "name": "Dehumidifier",	
+        "power":"200-750"
+    },
+    {   
+        "name": "Fan (ceiling table)",	
+        "power":"15-200"
+    },
+    {   
+        "name": "Light bulb (LED)",	
+        "power":"3-25"
+    },
+    {   
+        "name": "Light bulb (incandescent)",	
+        "power":"15-200"
+    },
+    {   
+        "name": "Electric water heater",	
+        "power":"3000-6600"
+    }
+]
