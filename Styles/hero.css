@@ -1,0 +1,144 @@
+.hero-section{
+    margin-top: 4em;
+    /* height: 80vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-container{
+    /* height: 100%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    padding: 0em 1em;
+}
+.form-card{
+    position: relative;
+    border-radius: 40px;
+    width: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4em ;
+
+    box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.15);
+    background-color: var(--white);
+    opacity: 1;
+}
+.form-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3em;
+}
+
+.form-title{
+    text-align: center;
+}
+
+.form-detail{
+    max-width: 325px;
+    text-align: center;
+    padding-top: 1em;
+}
+
+.form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.input-field{
+    width: 100%;
+    padding: 1em;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    border-radius: 10px;
+    
+    font-family: "Poppins", sans-serif;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.input-field:focus{
+    color: var(--dark);
+}
+
+.input-field + .input-field{
+    margin-top: 1em;
+}
+
+.submit{
+    border: none;
+    background-color: var(--lavender-light);
+    color: var(--dark);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.hero-image-container{
+    width: 22%;
+    max-width: 400px;
+
+    position: absolute;
+    right: 5%;
+    top: 60%;
+    transform: translate(0%,-60%);
+    transform-origin: 50% -17%;
+
+    z-index: -10;
+}
+
+@media (max-width:1000px){
+    .hero-image-container{
+        display: none;
+    }
+}
+
+.svg{
+    position: fixed;
+    transform: scale(0.5);
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.svg-2{
+    left: 73%;
+    bottom: -13%;
+}
+
+.svg-4{
+    left: -7%;
+    bottom: 30%;
+}
+
+.svg-6{
+    left: 65%;
+    bottom: 85%; 
+}
+
+@media (max-width:500px){
+    .form-card{
+        box-shadow: none;
+        border-radius: 0px;
+        width: 100%;
+        padding: 0em;
+        background: none;
+    }
+
+    .svg-2{
+        left: 66%;
+        bottom: -13%;
+    }
+    
+    .svg-4{
+        left: -31%;
+        bottom: 30%;
+    }
+    
+    .svg-6{
+        left: 46%;
+        bottom: 87%;
+    }
+}
