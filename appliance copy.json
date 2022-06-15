@@ -1,4 +1,6 @@
 [
+    {   "name" : "Home",
+        "data" : [
         {   
             "name": "Air Conditioner (HVAC)",	
             "power":"2500-10000"
@@ -38,7 +40,10 @@
         {   
             "name": "Electric water heater",	
             "power":"3000-6600"
-        },
+        }
+    ]},
+    {   "name" : "Kitchen",
+        "data" : [
         {
             "name" : "Refrigerator" , 
             "power" :	"500-1000"
@@ -74,7 +79,10 @@
         {
             "name" : "Electric cooker" , 
             "power" :	"160-1500"
-        },
+        }
+    ]},
+    {   "name" : "Other",
+        "data" : [
         {
             "name":"Electric vehicle charger" , 
             "power" :	"1,500-20,000"
@@ -115,4 +123,5 @@
             "name":"Water pump/motor" , 
             "power" :	"750-2000"
         }
+    ]}
 ]

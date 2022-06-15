@@ -43,17 +43,18 @@
                     <p class="form-detail">Use the calculator below to estimate electricity usage and power requirements based on the cost and usage of appliances</p>
                 </div>
                 <form class="form" id="form" action="">
-                    <input class="input-field" type="text" name="price" id="price" value="Price of what to spend" required>
-                    <input class="input-field" type="text" name="cost" id="cost" value="Cost per KW in NGN" required>
-                    <select id="appliances" class="input-field" name="appliance" form="form">
-                        <option value="define your own">Define Your Own</option>
-                        <optgroup class="select-group" label="Home"></optgroup>
-                        <optgroup class="select-group" label="Kitchen"></optgroup>
-                        <optgroup class="select-group" label="Other"></optgroup>
-                    </select>
-                    <input class="input-field" type="text" name="hours" id="hours" value="Hours used per Day" required>
-                    <input class="input-field submit" type="submit">
-                </form>
+                    <div class="input-container"><input class="input-field" data-unit="NGN" type="text" min="1" name="price" id="price" placeholder="Price of what to spend in NGN" required></input></div>
+                    <div class="input-container"><input class="input-field" data-unit="NGN per KWH"  type="text" min="0" name="cost" id="cost" placeholder="Cost per KW in NGN" required></div>
+                    <div class="input-container">
+                        <select id="appliances" class="input-field" name="appliance" form="form">
+                        </select>
+                    </div>
+                    <div class="input-container"><input class="input-field" data-unit="Hours" type="text" min="1" max="24" name="hours" id="hours" placeholder="Hours used per Day" required></div>
+                    <div class="input-container"><input class="input-field submit cta" type="submit"></div>
+                </form> 
+                <div class="form-res">
+                    <button class="cta cta-reset input-field">Reset</button>
+                </div>
             </div>
         </section>
     </main>
@@ -149,8 +150,6 @@
         <img class="hero-image" src="./Assets/Sun energy-amico.png" alt="">
     </div>
 
-    <script src="./header.js"></script>
-    <script src="./appliance.json"></script>
     <script src="./app.js"></script>
 </body>
 </html>
