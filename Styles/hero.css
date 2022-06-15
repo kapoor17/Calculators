@@ -1,18 +1,18 @@
 .hero-section{
     margin-top: 2em;
-    /* height: 80vh; */
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .form-container{
-    /* height: 100%; */
     display: flex;
     justify-content: center;
     align-items: center;
     
     padding: 0em 1em;
 }
+
 .form-card{
     position: relative;
     border-radius: 40px;
@@ -27,6 +27,7 @@
     background-color: var(--white);
     opacity: 1;
 }
+
 .form-header{
     display: flex;
     flex-direction: column;

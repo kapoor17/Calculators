@@ -40,13 +40,10 @@ body{
 .container {
     padding: 1em var(--container-padding-lr);
     width: 100%;
-    /* border: 1px solid goldenrod; */
 }
 
 .inner-container {
     width: 100%;
     max-width: var(--container-max-width);
     margin: 0 auto;
-    /* border: 1px solid red; */
 }
-
