@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    --dark: #031534;
+    --dark-indigo: #0A003F;
+    --lavender-dark: #9F9FED;
+    --lavender-light: #D0D0EC;
+    --white: #ffffff;
+
+    --container-padding-lr: 6em;
+    --container-max-width: 1500px; 
+}
+
+img{
+    max-width: 100%;
+}
+
+a{
+    text-decoration: none;
+}
+
+:root{
+    font-size: 15px;
+}
+
+body{
+    font-family: "Poppins", sans-serif;
+    color: var(--dark);
+    background-color: var(--white);
+    overflow: visible;
+    position: relative;
+
+    background: url(../Assets/backgound-2.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    padding: 1em var(--container-padding-lr);
+    width: 100%;
+}
+
+.inner-container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+}
