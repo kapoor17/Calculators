@@ -1,6 +1,8 @@
 *{
     margin: 0;
     padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
 
     --dark: #031534;
@@ -33,6 +35,9 @@ body{
     position: relative;
 
     background: url(../Assets/backgound-2.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     background-position: center;
 }
