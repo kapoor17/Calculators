@@ -35,12 +35,13 @@ body{
     position: relative;
 
     background: url(../Assets/backgound-2.jpg);
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    -webkit-background-size: inherit inherit;
+    -moz-background-size: inherit;
+    -o-background-size: inherit;
+    background-size: inherit;
     background-position: center;
-}
+
+} 
 
 .container {
     padding: 1em var(--container-padding-lr);

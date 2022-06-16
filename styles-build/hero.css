@@ -1,5 +1,5 @@
 .hero-section{
-    margin-top: 2em;
+    margin-top: 4em;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -42,9 +42,8 @@
     -webkit-border-radius: 40px;
     -moz-border-radius: 40px;
     border-radius: 40px;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
+    width: 90%;
+    max-width: 550px;
 
     display: -webkit-box;
 
@@ -67,7 +66,7 @@
     -moz-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    padding: 4em ;
+    padding: 4em 3em;
 
     -webkit-box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.15);
 
@@ -104,7 +103,7 @@
 }
 
 .form-detail{
-    max-width: 325px;
+    max-width: 350px;
     text-align: center;
     padding-top: 1em;
 }
@@ -146,6 +145,18 @@
 .input-container{
     width: 100%;
     position: relative;
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -moz-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    position: relative;
 }
 
 .input-container + .input-container{
@@ -153,7 +164,7 @@
 }
 
 .input-label{
-    font-size: 0.85rem;
+    font-size: 0.85em;
     top: 50%;
     right: 5%;
     -webkit-transform: translate(0%, -50%);
@@ -173,6 +184,12 @@
     border-radius: 10px;
     
     font-family: "Poppins", sans-serif;
+    font-size: 0.85em;
+}
+
+.input-field-pow{
+    /* width: auto; */
+    margin-left: 1em;
 }
 
 .input-field:focus{
@@ -180,17 +197,57 @@
 }
 
 .cta{
-    border: none;
+    padding: 1em;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    
+    font-family: "Poppins", sans-serif;
+    font-size: 0.85em;
+    font-weight: 500;
+
     background-color: var(--lavender-light);
     color: var(--dark);
-    font-weight: 500;
     cursor: pointer;
-    padding: 1em;
 }
 
-select{
-    padding: 1em;
+.appliance-select{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}
 
+#appliances{
+    width: 80% !important;
+}
+
+.cta-add, .cta-del{
+    width: 17.5%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-left: 1em;
+}
+
+.cta-del{
+    width: 18.5% !important;
+    background-color: rgb(228, 123, 123);
 }
 
 .form-res{
@@ -231,8 +288,8 @@ select{
     max-width: 400px;
 
     position: absolute;
-    right: 5%;
-    top: 60%;
+    right: 2%;
+    top: 420px;
     -webkit-transform: translate(0%,-60%);
     -moz-transform: translate(0%,-60%);
     -ms-transform: translate(0%,-60%);
@@ -245,6 +302,18 @@ select{
     transform-origin: 50% -17%;
 
     z-index: -10;
+}
+
+.background-blob{
+    z-index: -10;
+    position: absolute;
+    top: 0;
+    opacity: 0.5;
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    -ms-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2);
 }
 
 .svg{
@@ -280,13 +349,12 @@ select{
 }
 @media (max-width:500px){
     .form-card{
-        padding: 3em;
+        padding: 2em;
     }
     .res{
         font-size: 1.25rem !important;
     }
-}
-@media (max-width:410px){
+
     .hero-section{
         margin-top: 4em;
     }
