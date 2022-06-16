@@ -1,5 +1,5 @@
 .hero-section{
-    margin-top: 2em;
+    margin-top: 4em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,12 +16,13 @@
 .form-card{
     position: relative;
     border-radius: 40px;
-    width: fit-content;
+    width: 90%;
+    max-width: 550px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4em ;
+    padding: 4em 3em;
 
     box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.15);
     background-color: var(--white);
@@ -40,7 +41,7 @@
 }
 
 .form-detail{
-    max-width: 325px;
+    max-width: 350px;
     text-align: center;
     padding-top: 1em;
 }
@@ -65,6 +66,10 @@
 .input-container{
     width: 100%;
     position: relative;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
 }
 
 .input-container + .input-container{
@@ -72,7 +77,7 @@
 }
 
 .input-label{
-    font-size: 0.85rem;
+    font-size: 0.85em;
     top: 50%;
     right: 5%;
     transform: translate(0%, -50%);
@@ -86,6 +91,12 @@
     border-radius: 10px;
     
     font-family: "Poppins", sans-serif;
+    font-size: 0.85em;
+}
+
+.input-field-pow{
+    /* width: auto; */
+    margin-left: 1em;
 }
 
 .input-field:focus{
@@ -93,16 +104,39 @@
 }
 
 .cta{
-    border: none;
+    padding: 1em;
+    border: 1px solid rgba(0, 0, 0, 0.20);
+    border-radius: 10px;
+    
+    font-family: "Poppins", sans-serif;
+    font-size: 0.85em;
+    font-weight: 500;
+
     background-color: var(--lavender-light);
     color: var(--dark);
-    font-weight: 500;
     cursor: pointer;
 }
 
-select::after{
-    display: none;
-    padding-right: 1em;
+.appliance-select{
+    display: flex;
+    width: 100%;
+}
+
+#appliances{
+    width: 80% !important;
+}
+
+.cta-add, .cta-del{
+    width: 17.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1em;
+}
+
+.cta-del{
+    width: 18.5% !important;
+    background-color: rgb(228, 123, 123);
 }
 
 .form-res{
@@ -140,12 +174,20 @@ select::after{
     max-width: 400px;
 
     position: absolute;
-    right: 5%;
-    top: 60%;
+    right: 2%;
+    top: 420px;
     transform: translate(0%,-60%);
     transform-origin: 50% -17%;
 
     z-index: -10;
+}
+
+.background-blob{
+    z-index: -10;
+    position: absolute;
+    top: 0;
+    opacity: 0.5;
+    transform: scale(2);
 }
 
 .svg{
@@ -177,13 +219,12 @@ select::after{
 }
 @media (max-width:500px){
     .form-card{
-        padding: 3em;
+        padding: 2em;
     }
     .res{
         font-size: 1.25rem !important;
     }
-}
-@media (max-width:410px){
+
     .hero-section{
         margin-top: 4em;
     }

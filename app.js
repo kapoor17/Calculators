@@ -26,7 +26,7 @@ function showSuggestion(appData){
   if(appData.length>=0){
     const html = appData.map(match => {
       return `
-      <option value="${match.power}">
+      <option data-power="${match.power}">
       ${match.name}
       </option>
       `
@@ -39,25 +39,67 @@ function showSuggestion(appData){
 window.addEventListener("load", fetchData)
 
 
- /* Input Styling */
 
- const inputs = document.querySelectorAll("input.input-field:not(.submit)")
+/* Adding Devices */
 
- function numberWithCommas(x) {
-   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
- }
+ const addDevice = document.querySelector(".cta-add")
+ const select = document.querySelector("#appliances")
+ const submitButton = document.querySelector(".input-submit")
 
- function handleInputClick(e){
-   const html = document.createElement("label")
-   html.classList.add("input-label")
-   html.innerText= this.dataset.unit
-   this.before(html)
- }
+ function handleAdd(){
+    const selectedApp = select.options[select.selectedIndex]
+    const newDeviceContainer = document.createElement("div")
+    newDeviceContainer.dataset.power = selectedApp.dataset.power
+    newDeviceContainer.classList.add("input-container")
+    
+    const newDevice = document.createElement("div")
+    newDevice.classList.add("input-field", "input-field-app")
+    newDevice.innerText = selectedApp.value
+    
+    const newDevicePower = document.createElement("input")
+    newDevicePower.placeholder = "Energy in KW"
+    newDevicePower.dataset.unit = "W"
+    // newDevicePower.value = selectedApp.dataset.power
+    newDevicePower.classList.add("input-field", "input-field-pow")
+    
+    const delBtn = document.createElement("div")
+    delBtn.classList.add("cta", "cta-del")
+    delBtn.innerHTML="<i class='bi bi-trash'></i>"
+    
+    newDeviceContainer.appendChild(newDevice)
+    newDeviceContainer.appendChild(newDevicePower)
+    newDeviceContainer.appendChild(delBtn)
+    submitButton.before(newDeviceContainer)
 
- inputs.forEach(input=>{
-   input.addEventListener("input", handleInputClick,{once:true})
-   input.addEventListener("blur", function(){this.value=numberWithCommas(this.value)})
- })
+    const delDevice = document.querySelectorAll(".cta-del")
+    delDevice.forEach(del=>{del.addEventListener("click", handleDel)})
+  }
+
+  function handleDel(){
+    this.parentNode.remove()
+  }
+  
+  addDevice.addEventListener("click", handleAdd)
+  
+  /* Input Styling */
+  
+  const inputs = document.querySelectorAll("input.input-field:not(.submit)")
+  
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+  
+  function handleInputClick(e){
+    const html = document.createElement("label")
+    html.classList.add("input-label")
+    html.innerText= this.dataset.unit
+    this.before(html)
+  }
+  
+  inputs.forEach(input=>{
+    input.addEventListener("input", handleInputClick,{once:true})
+    input.addEventListener("blur", function(){this.value=numberWithCommas(this.value)})
+  })
 
  /* Form Handling */
 
@@ -65,7 +107,7 @@ window.addEventListener("load", fetchData)
  const formCard = document.querySelector(".form-card")
  const reset  = document.querySelector(".cta-reset")
 
- function fillCard(appliancePower, elecUsage){
+ /*function fillCard(appliancePower, elecUsage){
    const resLabel = document.createElement("div")
    resLabel.classList.add("res-label")
    reset.before(resLabel)
@@ -89,37 +131,72 @@ window.addEventListener("load", fetchData)
    setTimeout(()=>{
      formCard.classList.add("active")
    },500)
- }
+ }*/
+
+ function fillCard(appName, appPow, appliances, totalPow){
+    const hoursNeeded = (totalPow/appliances.length)/appPow
+    const hoursNeededPerDay =hoursNeeded/30.4
+    console.log(hoursNeeded , hoursNeededPerDay)
+
+    if(!document.querySelector(".res-label")){
+      const resLabel = document.createElement("div")
+      resLabel.classList.add("res-label")
+      reset.before(resLabel)
+  
+      let text = "The following is the estimated average amount of hours you should run these appliance"
+      resLabel.innerHTML = text
+    }
+
+    const resHrs = document.createElement("div")
+    resHrs.classList.add("res-Hrs")
+    resHrs.classList.add("res")
+    resHrs.innerHTML = `${appName} should be used ${Math.round((hoursNeededPerDay + Number.EPSILON) * 100) / 100} Hrs/Day`
+    reset.before(resHrs)
+
+    formCard.classList.add("result")
+    setTimeout(()=>{
+      formCard.classList.add("active")
+    },500)
+  }
 
  function handleError(){
-   const resLabel = document.createElement("div")
-   resLabel.classList.add("res-label")
-   reset.before(resLabel)
-  
-   let text = "Please Enter a Valid Number in the Inputs"
-   resLabel.innerHTML = text
-
-   formCard.classList.add("result")
-   setTimeout(()=>{
-     formCard.classList.add("active")
-   },500)  
+  console.log("Hello")
+  if(!document.querySelector(".res-error")){
+    const resLabel = document.createElement("div")
+    resLabel.classList.add("res-label", "res-error")
+    reset.before(resLabel)
+   
+    let text = "Please Enter a Valid Number in the Inputs"
+    resLabel.innerHTML = text
+ 
+    formCard.classList.add("result")
+    setTimeout(()=>{
+      formCard.classList.add("active")
+    },500)  
+  }
  }
 
  function handleSubmit(e){
-   e.preventDefault()
+   e.preventDefault()   
    const price = parseInt(this.querySelector(".input-container #price").value.replace(/,/g,""))
    const cost = parseFloat(this.querySelector(".input-container #cost").value.replace(/,/g,""))
-   const hours = parseFloat(this.querySelector(".input-container #hours").value.replace(/,/g,""))
+   const totalPow = price/cost
+   const appliances = Array.from(this.querySelectorAll(".input-container[data-power]"))
 
-   const appliancePower = price/(cost*hours)
-   const elecUsage = appliancePower*hours
+   appliances.forEach(app=>{
+    const appName = app.querySelector(".input-field-app").innerText
+    const appPow = app.querySelector(".input-field-pow").value
+    if(!parseFloat(appPow)){
+      handleError()
+      return
+    }
+    fillCard(appName, appPow, appliances, totalPow)
+   })
 
-   if(!appliancePower||!elecUsage){
+   if(!price&&!cost){
      handleError()
      return
    }
-
-   fillCard(appliancePower, elecUsage)
  }
 
  form.addEventListener("submit", handleSubmit)

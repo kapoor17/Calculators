@@ -185,11 +185,12 @@
     color: var(--dark);
     font-weight: 500;
     cursor: pointer;
+    padding: 1em;
 }
 
-select::after{
-    display: none;
-    padding-right: 1em;
+select{
+    padding: 1em;
+
 }
 
 .form-res{
