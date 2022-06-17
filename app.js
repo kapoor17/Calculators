@@ -133,25 +133,40 @@ window.addEventListener("load", fetchData)
    },500)
  }*/
 
- function fillCard(appName, appPow, appliances, totalPow){
-    const hoursNeeded = (totalPow/appliances.length)/appPow
-    const hoursNeededPerDay =hoursNeeded/30.4
-    console.log(hoursNeeded , hoursNeededPerDay)
-
+ const table = document.querySelector(".form-res-table")
+ function fillCard(appName, hoursNeededPerDay){
     if(!document.querySelector(".res-label")){
       const resLabel = document.createElement("div")
       resLabel.classList.add("res-label")
-      reset.before(resLabel)
+      table.before(resLabel)
   
       let text = "The following is the estimated average amount of hours you should run these appliance"
       resLabel.innerHTML = text
     }
 
-    const resHrs = document.createElement("div")
-    resHrs.classList.add("res-Hrs")
-    resHrs.classList.add("res")
-    resHrs.innerHTML = `${appName} should be used ${Math.round((hoursNeededPerDay + Number.EPSILON) * 100) / 100} Hrs/Day`
-    reset.before(resHrs)
+    const hoursNeededPerDayNew = `${parseInt(hoursNeededPerDay)} Hrs ${Math.round((((hoursNeededPerDay - parseInt(hoursNeededPerDay))*60) + Number.EPSILON) * 100) / 100} Mins`
+
+    console.log(hoursNeededPerDayNew)
+
+    const resRow = document.createElement("tr")
+    resRow.classList.add("res-row")
+
+    const resApp = document.createElement("td")
+    resApp.classList.add("res-app")
+    resApp.innerHTML = appName
+
+    const resHr = document.createElement("td")
+    resHr.classList.add("res-hr")
+    resHr.innerHTML = hoursNeededPerDayNew
+
+    resRow.appendChild(resApp)
+    resRow.appendChild(resHr)
+
+    table.appendChild(resRow)
+
+    // resHrs.classList.add("res")
+    // resHrs.innerHTML = `${appName} should be used ${Math.round((hoursNeededPerDay + Number.EPSILON) * 100) / 100} Hrs/Day`
+    // reset.before(resHrs)
 
     formCard.classList.add("result")
     setTimeout(()=>{
@@ -184,13 +199,14 @@ window.addEventListener("load", fetchData)
    const appliances = Array.from(this.querySelectorAll(".input-container[data-power]"))
 
    appliances.forEach(app=>{
-    const appName = app.querySelector(".input-field-app").innerText
-    const appPow = app.querySelector(".input-field-pow").value
-    if(!parseFloat(appPow)){
-      handleError()
-      return
-    }
-    fillCard(appName, appPow, appliances, totalPow)
+     const appName = app.querySelector(".input-field-app").innerText
+     const appPow = app.querySelector(".input-field-pow").value
+     const hoursNeededPerDay = ((totalPow/appliances.length)/appPow)/30.4
+      if(!parseFloat(hoursNeededPerDay)){
+        handleError()
+        return
+      }
+      fillCard(appName, hoursNeededPerDay)
    })
 
    if(!price&&!cost){

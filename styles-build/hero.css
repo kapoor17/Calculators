@@ -273,11 +273,17 @@
     max-width: 325px;
 }
 
-.res{
-    font-weight: 500;
-    font-size: 1.5rem;
-    margin-top: 1em;
+table{
+    table-layout: fixed;
+    width: 100%;
+    margin-top: 2em;
 }
+
+th,td{
+    padding: 0.5em 0em;
+}
+
+tr:nth-child(even) {background-color: var(--lavender-light);}
 
 .cta-reset{
     margin-top: 3em;
@@ -351,8 +357,9 @@
     .form-card{
         padding: 2em;
     }
-    .res{
-        font-size: 1.25rem !important;
+
+    table.form-res-table td{
+        font-size: 0.95rem !important;
     }
 
     .hero-section{
@@ -386,7 +393,7 @@
     }
 }
 @media (max-width:370px){
-    .res{
-        font-size: 1.1rem !important;
+    .form-res-table{
+        font-size: 0.85rem !important;
     }
 }
