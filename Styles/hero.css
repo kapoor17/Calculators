@@ -191,8 +191,9 @@ th,td{
     /* cursor: pointer; */
 }
 .res-hr.clicked{
-    /* border: 2px solid green; */
+    border: 2px solid green;
     position: relative;
+    cursor: pointer;
 }
 
 .res-hr.clicked .up{
@@ -201,7 +202,7 @@ th,td{
     align-items: center;
     
     position: absolute;
-    left: 102%;
+    left: 103%;
     top: 7%;
     transform: scale(1.4);
     cursor: pointer;
@@ -215,7 +216,7 @@ th,td{
     align-items: center;
 
     position: absolute;
-    left: 102%;
+    left: 103%;
     bottom: 7%;
     transform: scale(1.4);
     cursor: pointer;

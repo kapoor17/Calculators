@@ -145,7 +145,7 @@ function handleAdd(){
     }
 
     // hoursNeededPerDay>24 ? "More than 24 Hours" :
-    const hoursNeededPerDayNew = `${parseInt(hoursNeededPerDay)} Hrs ${Math.round((((hoursNeededPerDay - parseInt(hoursNeededPerDay))*60) + Number.EPSILON) * 100) / 100} Mins`
+    const hoursNeededPerDayNew = hoursNeededPerDay>24 ? "More than 24 Hours" : `${parseInt(hoursNeededPerDay)} Hrs ${Math.round((((hoursNeededPerDay - parseInt(hoursNeededPerDay))*60) + Number.EPSILON) * 100) / 100} Mins`
 
     const resRow = document.createElement("tr")
     resRow.classList.add("res-row")
@@ -225,73 +225,83 @@ function handleAdd(){
 
  form.addEventListener("submit", handleSubmit)
  
- let clickedApp = []
+// let clickedApp = []
 
- function addArrows(elem){
-  if(!elem.querySelector(".up") && !elem.querySelector(".down")){
-    const up = document.createElement("div")
-    up.classList.add("up")
-    up.innerHTML=`<i class="fa-solid fa-angle-up"></i>`
-    elem.appendChild(up)
+//  function addArrows(elem){
+//   if(!elem.querySelector(".up") && !elem.querySelector(".down")){
+//     const up = document.createElement("div")
+//     up.classList.add("up")
+//     up.innerHTML=`<i class="fa-solid fa-angle-up"></i>`
+//     elem.appendChild(up)
   
-    const down = document.createElement("div")
-    down.classList.add("down")
-    down.innerHTML=`<i class="fa-solid fa-angle-down"></i>`
-    elem.appendChild(down)
-  }
- }
+//     const down = document.createElement("div")
+//     down.classList.add("down")
+//     down.innerHTML=`<i class="fa-solid fa-angle-down"></i>`
+//     elem.appendChild(down)
+//   }
+//  }
 
- function removeArrows(elem){
-  console.log(elem)
-  const up=elem.querySelector(".up")
-  const down=elem.querySelector(".down")
-  if(up && down){
-    up.remove()
-    down.remove()
-  }
- }
+//  function removeArrows(elem){
+//   const up=elem.querySelector(".up")
+//   const down=elem.querySelector(".down")
+//   if(up && down){
+//     up.remove()
+//     down.remove()
+//   }
+//  }
 
- function handleValueExchange(){
-  const appTbHours = table.querySelectorAll(".res-hr")
-  appTbHours.forEach(app=>{
-    app.addEventListener("click", function(){
-      if(document.querySelectorAll(".clicked").length===2){
-        if(this.classList.contains("clicked")){
-          removeArrows(this)
-          this.classList.remove("clicked")
-          clickedApp.splice(clickedApp.findIndex(e => e === this),1);
-          exchangeValues()
-        }
-        return
-      }
+//  function handleValueExchange(){
+//   const appTbHours = table.querySelectorAll(".res-hr")
+//   appTbHours.forEach(app=>{
+//     app.addEventListener("click", function(){
+//       if(document.querySelectorAll(".clicked").length===2){
+//         if(this.classList.contains("clicked")){
+//           removeArrows(this)
+//           this.classList.remove("clicked")
+//           clickedApp.splice(clickedApp.findIndex(e => e === this),1);
+//           exchangeValues()
+//         }
+//         return
+//       }
       
-      if(this.classList.contains("clicked")){
-        this.classList.remove("clicked")
-        removeArrows(this)
-        clickedApp.pop()
-        exchangeValues()
-      }
-      else{
-        this.classList.add("clicked")
-        addArrows(this)
-        clickedApp.push(this)
-        exchangeValues()
-      }
-    })
-  })
+//       if(this.classList.contains("clicked")){
+//         this.classList.remove("clicked")
+//         removeArrows(this)
+//         clickedApp.pop()
+//         exchangeValues()
+//       }
+//       else{
+//         this.classList.add("clicked")
+//         addArrows(this)
+//         clickedApp.push(this)
+//         exchangeValues()
+//       }
+//     })
+//   })
 
-}
+// }
 
-function exchangeValues(){
-  console.log(clickedApp)
-  if(clickedApp.length==2){
-    clickedApp.forEach(app=>{
-      app.querySelector
-    })
-  }
-}
+// function exchangeValues(){
+//   console.log(clickedApp)
+//   if(clickedApp.length==2){
+//     clickedApp.forEach(app=>{
+//       const up = app.querySelector(".up")
+//       const down = app.querySelector(".down")
+//       up.addEventListener("click", handleExchangeUp)
+//       down.addEventListener("click", handleExchangeDown)
+//     })
+//   }
 
- form.addEventListener("submit", handleValueExchange)
+//   function handleExchangeUp(){
+//     console.log(this)
+//   }
+
+//   function handleExchangeDown(){
+//     console.log(this)
+//   }
+// }
+
+// form.addEventListener("submit", handleValueExchange)
 
  reset.addEventListener("click",()=>{window.location.reload(true)})
 
