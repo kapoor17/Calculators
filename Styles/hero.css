@@ -1,5 +1,5 @@
 .hero-section{
-    margin-top: 4em;
+    margin-top: 2em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +17,7 @@
     position: relative;
     border-radius: 40px;
     width: 90%;
-    max-width: 550px;
+    max-width: 650px;
 
     display: flex;
     flex-direction: column;
@@ -33,7 +33,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 3em;
+    margin-bottom:2em;
 }
 
 .form-title{
@@ -94,17 +94,37 @@
     font-size: 0.85em;
 }
 
-.input-field-pow{
-    /* width: auto; */
+.input-field-app p{
+    width: max-content;
+}
+
+.input-field-app,.input-field-hour,.input-field-pow{
+    overflow-x: scroll;
+    flex: 1 1;
+    width: 25%;
+    font-size: 0.75rem;
+}
+
+.input-field-hour,.input-field-pow{
     margin-left: 1em;
 }
+
+/* .input-field-pow{
+    width: auto;
+    margin-left: 1em;
+}
+
+.input-field-hour{
+    width: auto;
+    margin-left:1em;
+} */
 
 .input-field:focus{
     color: var(--dark);
 }
 
 .cta{
-    padding: 1em;
+    padding: 0.75em;
     border: 1px solid rgba(0, 0, 0, 0.20);
     border-radius: 10px;
     
@@ -119,15 +139,13 @@
 
 .appliance-select{
     display: flex;
+    justify-content: space-between;
     width: 100%;
 }
 
-#appliances{
-    width: 80% !important;
-}
 
 .cta-add, .cta-del{
-    width: 17.5%;
+    width: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,7 +153,7 @@
 }
 
 .cta-del{
-    width: 18.5% !important;
+    width: 49px !important;
     background-color: rgb(228, 123, 123);
 }
 
@@ -168,8 +186,53 @@ table{
 th,td{
     padding: 0.5em 0em;
 }
+.res-hr{
+    pointer-events: all;
+    /* cursor: pointer; */
+}
+.res-hr.clicked{
+    /* border: 2px solid green; */
+    position: relative;
+}
+
+.res-hr.clicked .up{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: absolute;
+    left: 102%;
+    top: 7%;
+    transform: scale(1.4);
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+}
+
+.res-hr.clicked .down{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    left: 102%;
+    bottom: 7%;
+    transform: scale(1.4);
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+}
 
 tr:nth-child(even) {background-color: var(--lavender-light);}
+
+.alert{
+    max-width: 90%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 1em;
+    color: green;
+    font-weight: 500;
+}
 
 .cta-reset{
     margin-top: 3em;
@@ -223,7 +286,10 @@ tr:nth-child(even) {background-color: var(--lavender-light);}
         display: none;
     }
 }
-@media (max-width:500px){
+@media (max-width:600px){
+    .form-container{
+        padding: 0;
+    }
     .form-card{
         padding: 2em;
     }
@@ -233,7 +299,7 @@ tr:nth-child(even) {background-color: var(--lavender-light);}
     }
 
     .hero-section{
-        margin-top: 4em;
+        margin: 4em 0em 2em 0em;
     }
     .form-card{
         box-shadow: none;
@@ -241,6 +307,14 @@ tr:nth-child(even) {background-color: var(--lavender-light);}
         width: 100%;
         padding: 0em;
         background: none;
+    }
+
+    .res-hr.clicked .up{
+        left: 90%
+    }
+    
+    .res-hr.clicked .down{
+        left: 90%
     }
 
     .svg-2{

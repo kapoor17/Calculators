@@ -1,10 +1,14 @@
 /* Header */
-const burger = document.querySelector(".burger-nav")
-const navigation = document.querySelector(".navigation")
+function burgerNav(){
+  const burger = document.querySelector(".burger-nav")
+  const navigation = document.querySelector(".navigation")
+  
+  burger.addEventListener("click", ()=>{
+    navigation.classList.toggle("open")
+  })
+}
 
-burger.addEventListener("click", ()=>{
-  navigation.classList.toggle("open")
-})
+burgerNav()
 
 /* Fetching Data and Displaying */
 
@@ -42,37 +46,47 @@ window.addEventListener("load", fetchData)
 
 /* Adding Devices */
 
- const addDevice = document.querySelector(".cta-add")
- const select = document.querySelector("#appliances")
- const submitButton = document.querySelector(".input-submit")
 
- function handleAdd(){
+const addDevice = document.querySelector(".cta-add")
+const select = document.querySelector("#appliances")
+const submitButton = document.querySelector(".input-submit")
+
+function handleAdd(){
     const selectedApp = select.options[select.selectedIndex]
+
     const newDeviceContainer = document.createElement("div")
     newDeviceContainer.dataset.power = selectedApp.dataset.power
     newDeviceContainer.classList.add("input-container")
     
     const newDevice = document.createElement("div")
     newDevice.classList.add("input-field", "input-field-app")
-    newDevice.innerText = selectedApp.value
+    const p = document.createElement("p")
+    p.innerHTML = selectedApp.value
+    newDevice.appendChild(p)
+
+    const newDeviceHour  = document.createElement("input")
+    newDeviceHour.placeholder = "~ Hours"
+    newDeviceHour.classList.add("input-field","input-field-hour")
     
     const newDevicePower = document.createElement("input")
-    newDevicePower.placeholder = "Energy in KW"
-    newDevicePower.dataset.unit = "W"
-    // newDevicePower.value = selectedApp.dataset.power
+    newDevicePower.placeholder = "E in KW"
+    newDevicePower.dataset.unit = "KW"
+    newDevicePower.value = selectedApp.dataset.power
     newDevicePower.classList.add("input-field", "input-field-pow")
+    // newDevicePower.addEventListener("input", handleInputClick,{once:true})
     
     const delBtn = document.createElement("div")
     delBtn.classList.add("cta", "cta-del")
     delBtn.innerHTML="<i class='bi bi-trash'></i>"
     
     newDeviceContainer.appendChild(newDevice)
+    newDeviceContainer.appendChild(newDeviceHour)
     newDeviceContainer.appendChild(newDevicePower)
     newDeviceContainer.appendChild(delBtn)
     submitButton.before(newDeviceContainer)
 
     const delDevice = document.querySelectorAll(".cta-del")
-    delDevice.forEach(del=>{del.addEventListener("click", handleDel)})
+    delDevice.forEach(del=>{del.addEventListener("click", handleDel,{once:true})})
   }
 
   function handleDel(){
@@ -107,34 +121,20 @@ window.addEventListener("load", fetchData)
  const formCard = document.querySelector(".form-card")
  const reset  = document.querySelector(".cta-reset")
 
- /*function fillCard(appliancePower, elecUsage){
-   const resLabel = document.createElement("div")
-   resLabel.classList.add("res-label")
-   reset.before(resLabel)
-
-   let text = "The following is the estimated average power for this appliance along with the electricity usage."
-   resLabel.innerHTML = text
-
-   const resKW = document.createElement("div")
-   resKW.classList.add("res-kw")
-   resKW.classList.add("res")
-   resKW.innerHTML = `Appliance Power : ${Math.round((appliancePower + Number.EPSILON) * 100) / 100} KW`
-   reset.before(resKW)
-  
-   const resKWH = document.createElement("div")
-   resKWH.classList.add("res-kwh")
-   resKWH.classList.add("res")
-   resKWH.innerHTML = `Electricity Usage : ${Math.round((elecUsage + Number.EPSILON) * 100) / 100} KWH`
-   reset.before(resKWH)
-
-   formCard.classList.add("result")
-   setTimeout(()=>{
-     formCard.classList.add("active")
-   },500)
- }*/
-
  const table = document.querySelector(".form-res-table")
- function fillCard(appName, hoursNeededPerDay){
+ function fillCard(appPow, appName, appEnergy){
+    const hoursNeededPerDay = appEnergy/appPow
+    console.log(appName,hoursNeededPerDay, appPow, appEnergy)
+    
+    if(hoursNeededPerDay>24){
+      if(!document.querySelector(".alert")){
+        const alert = document.createElement("div")
+        alert.classList.add("alert")
+        alert.innerHTML = "You have a surplus amount of Monthly Budget, as one or more than one items can be run for more than 24Hrs in a Day"
+        reset.before(alert)
+      }
+    }
+  
     if(!document.querySelector(".res-label")){
       const resLabel = document.createElement("div")
       resLabel.classList.add("res-label")
@@ -144,9 +144,8 @@ window.addEventListener("load", fetchData)
       resLabel.innerHTML = text
     }
 
+    // hoursNeededPerDay>24 ? "More than 24 Hours" :
     const hoursNeededPerDayNew = `${parseInt(hoursNeededPerDay)} Hrs ${Math.round((((hoursNeededPerDay - parseInt(hoursNeededPerDay))*60) + Number.EPSILON) * 100) / 100} Mins`
-
-    console.log(hoursNeededPerDayNew)
 
     const resRow = document.createElement("tr")
     resRow.classList.add("res-row")
@@ -157,16 +156,14 @@ window.addEventListener("load", fetchData)
 
     const resHr = document.createElement("td")
     resHr.classList.add("res-hr")
+    resHr.dataset.power=appPow
+    resHr.dataset.energy=appEnergy
     resHr.innerHTML = hoursNeededPerDayNew
 
     resRow.appendChild(resApp)
     resRow.appendChild(resHr)
 
     table.appendChild(resRow)
-
-    // resHrs.classList.add("res")
-    // resHrs.innerHTML = `${appName} should be used ${Math.round((hoursNeededPerDay + Number.EPSILON) * 100) / 100} Hrs/Day`
-    // reset.before(resHrs)
 
     formCard.classList.add("result")
     setTimeout(()=>{
@@ -195,18 +192,29 @@ window.addEventListener("load", fetchData)
    e.preventDefault()   
    const price = parseInt(this.querySelector(".input-container #price").value.replace(/,/g,""))
    const cost = parseFloat(this.querySelector(".input-container #cost").value.replace(/,/g,""))
-   const totalPow = price/cost
+   const totalEnergy = price/cost
    const appliances = Array.from(this.querySelectorAll(".input-container[data-power]"))
-
+   
+   let totalHrs=0
    appliances.forEach(app=>{
-     const appName = app.querySelector(".input-field-app").innerText
-     const appPow = app.querySelector(".input-field-pow").value
-     const hoursNeededPerDay = ((totalPow/appliances.length)/appPow)/30.4
-      if(!parseFloat(hoursNeededPerDay)){
+     const appHour = parseInt(app.querySelector(".input-field-hour").value)
+     totalHrs+=appHour
+    })
+    
+    appliances.forEach(app=>{
+      const appName = app.querySelector(".input-field-app").innerText
+      const appHour = parseInt(app.querySelector(".input-field-hour").value)
+      const appPow = app.querySelector(".input-field-pow").value
+      
+      const timeRatio = (appHour*appPow)/totalHrs
+      const appEnergy = totalEnergy*timeRatio
+      
+      if(!parseFloat(appEnergy)){
         handleError()
         return
       }
-      fillCard(appName, hoursNeededPerDay)
+
+      fillCard(appPow, appName, appEnergy)
    })
 
    if(!price&&!cost){
@@ -216,5 +224,76 @@ window.addEventListener("load", fetchData)
  }
 
  form.addEventListener("submit", handleSubmit)
+ 
+ let clickedApp = []
+
+ function addArrows(elem){
+  if(!elem.querySelector(".up") && !elem.querySelector(".down")){
+    const up = document.createElement("div")
+    up.classList.add("up")
+    up.innerHTML=`<i class="fa-solid fa-angle-up"></i>`
+    elem.appendChild(up)
+  
+    const down = document.createElement("div")
+    down.classList.add("down")
+    down.innerHTML=`<i class="fa-solid fa-angle-down"></i>`
+    elem.appendChild(down)
+  }
+ }
+
+ function removeArrows(elem){
+  console.log(elem)
+  const up=elem.querySelector(".up")
+  const down=elem.querySelector(".down")
+  if(up && down){
+    up.remove()
+    down.remove()
+  }
+ }
+
+ function handleValueExchange(){
+  const appTbHours = table.querySelectorAll(".res-hr")
+  appTbHours.forEach(app=>{
+    app.addEventListener("click", function(){
+      if(document.querySelectorAll(".clicked").length===2){
+        if(this.classList.contains("clicked")){
+          removeArrows(this)
+          this.classList.remove("clicked")
+          clickedApp.splice(clickedApp.findIndex(e => e === this),1);
+          exchangeValues()
+        }
+        return
+      }
+      
+      if(this.classList.contains("clicked")){
+        this.classList.remove("clicked")
+        removeArrows(this)
+        clickedApp.pop()
+        exchangeValues()
+      }
+      else{
+        this.classList.add("clicked")
+        addArrows(this)
+        clickedApp.push(this)
+        exchangeValues()
+      }
+    })
+  })
+
+}
+
+function exchangeValues(){
+  console.log(clickedApp)
+  if(clickedApp.length==2){
+    clickedApp.forEach(app=>{
+      app.querySelector
+    })
+  }
+}
+
+ form.addEventListener("submit", handleValueExchange)
 
  reset.addEventListener("click",()=>{window.location.reload(true)})
+
+/* Appliance Energy Exchange */
+

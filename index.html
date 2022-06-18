@@ -9,9 +9,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./styles-build/main.css">
     <link rel="stylesheet" href="./styles-build/header.css">
-    <link rel="stylesheet" href="./styles-build/hero.css">
+    <link rel="stylesheet" href="./styles/hero.css">
     
     <title>Appliance Calculator</title>
 </head>
@@ -44,7 +45,7 @@
                 </div>
                 <form class="form" id="form" action="">
                     <div class="input-container"><input class="input-field" data-unit="NGN" type="text" min="1" name="price" id="price" placeholder="Price of what to spend in NGN" required></input></div>
-                    <div class="input-container"><input class="input-field" data-unit="NGN per KWH"  type="text" min="0" name="cost" id="cost" placeholder="Cost per KW in NGN" required></div>
+                    <div class="input-container"><input class="input-field" data-unit="NGN per KWH"  type="text" min="0" name="cost" id="cost" placeholder="Cost of KWH in NGN" required></div>
                     <div class="input-container">
                             <div class="appliance-select">
                                 <select id="appliances" class="input-field" name="appliance" form="form">
@@ -58,7 +59,7 @@
                     <table class="form-res-table">
                         <tr>
                             <th>Appliance Name</th>
-                            <th>Number of Hours that the appliance can be used</th>
+                            <th>Maximum number of Hours that the appliance can be used per day</th>
                         </tr>
                     </table>
                     <button class="cta cta-reset input-field">Reset</button>
